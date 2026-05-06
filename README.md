@@ -4,13 +4,10 @@
 ## Instalación y ejecución
 
 ```bash
-# 1. Entrar a la carptea
-cd graphql-colombia
-
-# 2. Instalar dependencias
+# 1. Instalar dependencias
 npm install
 
-# 3. Iniciar el servidor
+# 2. Iniciar el servidor
 npm start
 ```
 
@@ -48,107 +45,5 @@ type Query {
   city(id: Int!): City
   cityByName(name: String!): City
   searchCities(keyword: String!): [City]
-}
-```
-
----
-
-## Ejemplos
-
-### Listar todos los departamentos
-
-```graphql
-query {
-  departments {
-    id
-    name
-    description
-  }
-}
-```
-
-### Obtener un departamento por ID
-
-```graphql
-query {
-  department(id: 5) {
-    id
-    name
-    description
-  }
-}
-```
-
-### Obtener un departamento por nombre
-
-```graphql
-query {
-  departmentByName(name: "Boyacá") {
-    id
-    name
-    description
-  }
-}
-```
-
-### Listar todas las ciudades con su departamento
-
-```graphql
-query {
-  cities {
-    id
-    name
-    description
-    department {
-      id
-      name
-    }
-  }
-}
-```
-
-### Obtener una ciudad por ID
-
-```graphql
-query {
-  city(id: 1) {
-    id
-    name
-    description
-    department {
-      id
-      name
-    }
-  }
-}
-```
-
-### Obtener una ciudad por nombre
-
-```graphql
-query {
-  cityByName(name: "Sogamoso") {
-    id
-    name
-    description
-    department {
-      id
-      name
-    }
-  }
-}
-```
-
-### Buscar ciudades por keyword
-
-```graphql
-query {
-  searchCities(keyword: "soga") {
-    id
-    name
-    department {
-      name
-    }
-  }
 }
 ```

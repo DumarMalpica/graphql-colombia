@@ -1,0 +1,88 @@
+
+fragment DepartmentBasicFields on Department {
+  id
+  name
+}
+
+fragment CityBasicFields on City {
+  id
+  name
+}
+
+fragment DepartmentFullFields on Department {
+  id
+  name
+  description
+  cities {
+    ...CityBasicFields
+  }
+}
+
+# Queries departamentos
+
+query TodosLosDepartamentos {
+  departments {
+    ...DepartmentBasicFields
+    description
+  }
+}
+
+query DepartamentoPorId {
+  department(id: 5) {
+    ...DepartmentBasicFields
+    description
+  }
+}
+
+query DepartamentoPorNombre {
+  departmentByName(name: "Boyacá") {
+    ...DepartmentBasicFields
+    description
+  }
+}
+
+query DepartamentoConCiudades {
+  departmentWithCities(id: 5) {
+    ...DepartmentFullFields
+  }
+}
+
+# Queries ciudades
+
+query TodasLasCiudades {
+  cities {
+    ...CityBasicFields
+    department {
+      ...DepartmentBasicFields
+    }
+  }
+}
+
+query CiudadPorId {
+  city(id: 1) {
+    ...CityBasicFields
+    description
+    department {
+      ...DepartmentBasicFields
+    }
+  }
+}
+
+query CiudadPorNombre {
+  cityByName(name: "Sogamoso") {
+    ...CityBasicFields
+    description
+    department {
+      ...DepartmentBasicFields
+    }
+  }
+}
+
+query BuscarCiudades {
+  searchCities(keyword: "soga") {
+    ...CityBasicFields
+    department {
+      ...DepartmentBasicFields
+    }
+  }
+}
